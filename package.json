@@ -1,0 +1,12 @@
+{
+  "name": "github-action-get-jira-task",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:chicus12/github-action-get-jira-task.git",
+  "author": "chicus12 <chicus12@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^1.5.0",
+    "@actions/github": "^5.0.0"
+  }
+}
