@@ -11,4 +11,4 @@ jobs:
       env:
         SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
       with:
-        args: '{\"channel\":\"C1234567890\",\"text\":\"Hello world from github\"}'
+        args: '{\"channel\":\"C02DU0PMRC3\",\"text\":\"Hello world from github\"}'
