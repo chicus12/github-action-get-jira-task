@@ -1,0 +1,10 @@
+name: 'Task from PR body'
+description: 'A action that get task from '
+author: 'Francisco Cerdas'
+runs:
+  using: 'node12'
+  main: 'index.js'
+inputs:
+  github-token:
+    description: 'The GITHUB_TOKEN secret'
+    required: true
