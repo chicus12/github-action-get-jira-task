@@ -1,0 +1,14 @@
+name: Test Notify slack
+on:
+  pull_request:
+    branches:
+      - '**'
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: pullreminders/slack-action@master
+      env:
+        SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+      with:
+        args: '{\"channel\":\"C1234567890\",\"text\":\"Hello world from github\"}'
