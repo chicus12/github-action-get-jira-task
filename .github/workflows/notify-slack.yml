@@ -4,17 +4,14 @@ on:
     branches:
       - '**'
 jobs:
-  tasks:
+  notify:
     runs-on: ubuntu-latest
+    needs: [tasks]
     steps:
     - name: Task from PR body
       id: task
       uses: chicus12/github-action-get-jira-task@main
 
-  notify:
-    runs-on: ubuntu-latest
-    needs: [tasks]
-    steps:
     - uses: pullreminders/slack-action@master
       env:
         SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
