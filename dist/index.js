@@ -6374,6 +6374,7 @@ async function run() {
       return null
     }).filter(item => item!==null).join(', ')
 
+core.info(`aaa ${attlasianTask}`)
     core.setOutput('task', attlasianTask.length ? attlasianTask : 'Tareas varias');
   } catch (error) {
     core.error(error);
