@@ -22,7 +22,6 @@ https://soinlabs.atlassian.net/browse/BOD-271
 #### Screenshots (if appropriate)
 `
 
-const test = 'hhh'
 async function run() {
   try {
 
@@ -47,7 +46,8 @@ async function run() {
       return null
     }).filter(item => item!==null).join(', ')
 
-    core.setOutput('task', attlasianTask);
+    core.info('tassskkk',  attlasianTask)
+    core.setOutput('task', attlasianTask || 'aaa');
   } catch (error) {
     core.error(error);
     core.setFailed(error.message);
