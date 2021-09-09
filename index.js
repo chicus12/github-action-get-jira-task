@@ -1,7 +1,7 @@
-const core = require('@actions/core')
-const github = require('@actions/github')
+const core = require("@actions/core");
+const github = require("@actions/github");
 
-const pullRequestBody  = `
+const pullRequestBody = `
 ## Pull Request
 
 #### What's this PR do?
@@ -20,41 +20,47 @@ https://soinlabs.atlassian.net/browse/BOD-271
 :task|esto es una prueba
 :task|esto es otra prueba
 #### Screenshots (if appropriate)
-`
+`;
 
 async function run() {
   try {
     const body = github.context.payload.pull_request.body;
-
+    console.log("gut nait");
     if (!body) {
-      core.setOutput('task', 'Tareas varias');
+      core.setOutput("task", "Tareas varias");
       return;
     }
 
-    const attlasianTask = body.split('\n').map(line => {
-      if(line.includes('atlassian.net')) {
-        const task = line.substring(line.lastIndexOf('/') + 1)
+    const attlasianTask = body
+      .split("\n")
+      .map((line) => {
+        if (line.includes("atlassian.net")) {
+          const task = line.substring(line.lastIndexOf("/") + 1);
 
-        return `<${line}|${task}>`
-      }
+          return `<${line}|${task}>`;
+        }
 
+        if (line.includes(":task")) {
+          const [, task] = line.split("|");
 
-      if(line.includes(':task')){
-        const [, task] = line.split('|')
+          return task;
+        }
 
-        return task
-      }
+        return null;
+      })
+      .filter((item) => item !== null)
+      .join(", ");
 
-      return null
-    }).filter(item => item!==null).join(', ')
-
-    core.setOutput('task', attlasianTask.length ? attlasianTask.replace(/(?:\r\n|\r|\n)/g, '') : 'Tareas varias');
+    core.setOutput(
+      "task",
+      attlasianTask.length
+        ? attlasianTask.replace(/(?:\r\n|\r|\n)/g, "")
+        : "Tareas varias"
+    );
   } catch (error) {
     core.error(error);
     core.setFailed(error.message);
   }
 }
 
-run()
-
-
+run();
