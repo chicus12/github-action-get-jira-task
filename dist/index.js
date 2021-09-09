@@ -6352,6 +6352,7 @@ async function run() {
   try {
 
     const body = github.context.payload.pull_request.body;
+    core.info('tassskkk',  body)
 
     if (!body) return;
 

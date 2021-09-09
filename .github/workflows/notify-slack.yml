@@ -1,7 +1,6 @@
 name: Test Notify slack
 on:
   pull_request:
-    types: [opened]
     branches:
       - '**'
 jobs:

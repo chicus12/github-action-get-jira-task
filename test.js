@@ -1,6 +1,3 @@
-const core = require('@actions/core')
-const github = require('@actions/github')
-
 const pullRequestBody  = `
 ## Pull Request
 
@@ -22,15 +19,7 @@ https://soinlabs.atlassian.net/browse/BOD-271
 #### Screenshots (if appropriate)
 `
 
-async function run() {
-  try {
-
-    const body = github.context.payload.pull_request.body;
-    core.info('tassskkk',  body)
-
-    if (!body) return;
-
-    const attlasianTask = pullRequestBody.split('\n').map(line => {
+const attlasianTask = pullRequestBody.split('\n').map(line => {
       if(line.includes('atlassian.net')) {
         const task = line.substring(line.lastIndexOf('/') + 1)
 
@@ -47,12 +36,4 @@ async function run() {
       return null
     }).filter(item => item!==null).join(', ')
 
-    core.info('tassskkk',  attlasianTask)
-    core.setOutput('task', attlasianTask || 'aaa');
-  } catch (error) {
-    core.error(error);
-    core.setFailed(error.message);
-  }
-}
-
-run()
+    console.info('tassskkk',  attlasianTask)
