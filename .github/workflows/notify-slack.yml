@@ -12,7 +12,6 @@ jobs:
       id: task
       uses: chicus12/github-action-get-jira-task@main
 
-
   notify:
     runs-on: ubuntu-latest
     steps:
