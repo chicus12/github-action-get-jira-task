@@ -10,7 +10,7 @@ jobs:
     steps:
     - name: Task from PR body
       id: task
-      uses: chicus12/github-action-get-jira-task@1.0.1
+      uses: chicus12/github-action-get-jira-task@main
 
 
   notify:
