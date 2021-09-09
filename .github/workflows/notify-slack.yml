@@ -1,12 +1,14 @@
 name: Test Notify slack
 on:
   pull_request:
+    types: [opened]
     branches:
       - '**'
 jobs:
   notify:
     runs-on: ubuntu-latest
     name: A job to notify to slack new PR
+    if: ${{ github.event.pull_request.user.login == 'chicus12' }}
     steps:
     - name: Task from PR body
       id: task
