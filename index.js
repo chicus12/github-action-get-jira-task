@@ -29,7 +29,22 @@ async function run() {
 
     if (!body) return;
 
-    const attlasianTask = pullRequestBody.split('\n')
+    const attlasianTask = pullRequestBody.split('\n').map(line => {
+      if(line.includes('atlassian.net')) {
+        const task = line.substring(line.lastIndexOf('/') + 1)
+
+        return `<${line}|${task}>`
+      }
+
+
+      if(line.includes(':task')){
+        const [, task] = line.split('|')
+
+        return task
+      }
+
+      return null
+    }).filter(item => item!==null).join(', ')
 
     core.setOutput('task', attlasianTask);
   } catch (error) {
@@ -39,5 +54,3 @@ async function run() {
 }
 
 run()
-
-console.log('se agrega cambio')

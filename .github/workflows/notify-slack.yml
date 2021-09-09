@@ -1,9 +1,17 @@
 name: Test Notify slack
 on:
   pull_request:
+    types: [opened]
     branches:
       - '**'
 jobs:
+  tasks:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Task from PR body
+      id: task
+      uses: chicus12/github-action-get-jira-task@main
+
   notify:
     runs-on: ubuntu-latest
     steps:
@@ -11,4 +19,4 @@ jobs:
       env:
         SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
       with:
-        args: '{\"channel\":\"C02DU0PMRC3\",\"text\":\"Hello world from github\"}'
+        args: '{\"channel\":\"${{ secrets.SLACK_CHANNEL_ID }}\",\"text\":\"${{ steps.task.outputs.task }}\"}'
