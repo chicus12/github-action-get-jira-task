@@ -37,3 +37,8 @@ const attlasianTask = pullRequestBody.split('\n').map(line => {
     }).filter(item => item!==null).join(', ')
 
     console.info('tassskkk',  attlasianTask)
+
+      pull_request:
+    types: [opened]
+    branches:
+      - '**'
