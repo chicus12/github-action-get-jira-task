@@ -6352,7 +6352,7 @@ async function run() {
   try {
 
     const body = github.context.payload.pull_request.body;
-    core.info('tassskkk',  body)
+    core.info(`tassskkk: ${body}`)
 
     if (!body) return;
 
@@ -6373,7 +6373,7 @@ async function run() {
       return null
     }).filter(item => item!==null).join(', ')
 
-    core.info('tassskkk',  attlasianTask)
+    core.info(`tassskkk: ${attlasianTask}`)
     core.setOutput('task', attlasianTask || 'aaa');
   } catch (error) {
     core.error(error);
