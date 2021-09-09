@@ -48,7 +48,7 @@ async function run() {
       return null
     }).filter(item => item!==null).join(', ')
 
-core.info(`aaa ${attlasianTask}`)
+core.info(`aaa ${attlasianTask.replace(/(?:\r\n|\r|\n)/g, '')}`)
     core.setOutput('task', attlasianTask.length ? attlasianTask : 'Tareas varias');
   } catch (error) {
     core.error(error);
