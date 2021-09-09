@@ -6327,7 +6327,7 @@ var __webpack_exports__ = {};
 const core = __nccwpck_require__(186)
 const github = __nccwpck_require__(438)
 
-const pullRequestBody  = `
+const pullRequestBody  = (/* unused pure expression or super */ null && (`
 ## Pull Request
 
 #### What's this PR do?
@@ -6346,17 +6346,18 @@ https://soinlabs.atlassian.net/browse/BOD-271
 :task|esto es una prueba
 :task|esto es otra prueba
 #### Screenshots (if appropriate)
-`
+`))
 
 async function run() {
   try {
-
     const body = github.context.payload.pull_request.body;
-    core.info(`tassskkk: ${body}`)
 
-    if (!body) return;
+    if (!body) {
+      core.setOutput('task', 'Tareas varias');
+      return;
+    }
 
-    const attlasianTask = pullRequestBody.split('\n').map(line => {
+    const attlasianTask = body.split('\n').map(line => {
       if(line.includes('atlassian.net')) {
         const task = line.substring(line.lastIndexOf('/') + 1)
 
@@ -6373,8 +6374,7 @@ async function run() {
       return null
     }).filter(item => item!==null).join(', ')
 
-    core.info(`tassskkk: ${attlasianTask}`)
-    core.setOutput('task', attlasianTask || 'aaa');
+    core.setOutput('task', attlasianTask.length ? attlasianTask : 'Tareas varias');
   } catch (error) {
     core.error(error);
     core.setFailed(error.message);
