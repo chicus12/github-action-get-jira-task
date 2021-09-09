@@ -1,5 +1,5 @@
 name: 'Task from PR body'
-description: 'A action that get task from '
+description: 'A action that get task from pull request body'
 author: 'Francisco Cerdas'
 runs:
   using: 'node12'

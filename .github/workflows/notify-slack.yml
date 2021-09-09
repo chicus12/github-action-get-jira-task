@@ -5,6 +5,14 @@ on:
     branches:
       - '**'
 jobs:
+  tasks:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Task from PR body
+      id: task
+      uses: chicus12/github-action-get-jira-task@1.0.1
+
+
   notify:
     runs-on: ubuntu-latest
     steps:
@@ -12,4 +20,4 @@ jobs:
       env:
         SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
       with:
-        args: '{\"channel\":\"${{ secrets.SLACK_CHANNEL_ID }}\",\"text\":\"Hello world from github\"}'
+        args: '{\"channel\":\"${{ secrets.SLACK_CHANNEL_ID }}\",\"text\":\"${{ steps.task.outputs.task }}\"}'
