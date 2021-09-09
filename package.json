@@ -5,8 +5,14 @@
   "repository": "git@github.com:chicus12/github-action-get-jira-task.git",
   "author": "chicus12 <chicus12@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "prepare": "ncc build index.js -o dist --source-map --license licenses.txt"
+  },
   "dependencies": {
     "@actions/core": "^1.5.0",
     "@actions/github": "^5.0.0"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.30.0"
   }
 }
