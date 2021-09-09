@@ -8,3 +8,6 @@ inputs:
   github-token:
     description: 'The GITHUB_TOKEN secret'
     required: true
+branding:
+  icon: 'book-open'
+  color: 'green'
